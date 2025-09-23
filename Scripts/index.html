@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lunna Modas - Sofisticação e Minimalismo</title>
+  <meta name="description" content="Lunna Modas - Peças minimalistas e sofisticadas para mulheres modernas.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,6 +23,8 @@
       padding: 0;
       box-sizing: border-box;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -53,17 +56,19 @@
       align-items: center;
       padding: 1.5rem 0;
       border-bottom: 1px solid var(--cinza-claro);
-    }
-    
-    .logo-text {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--dourado);
-        text-decoration: none;
+      position: relative;
     }
 
-    nav a {
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dourado);
+      text-decoration: none;
+      z-index: 1001;
+    }
+
+    .desktop-nav a {
       margin: 0 1.5rem;
       text-decoration: none;
       color: var(--texto);
@@ -72,7 +77,7 @@
       transition: color 0.3s;
     }
 
-    nav a::after {
+    .desktop-nav a::after {
       content: '';
       position: absolute;
       width: 0;
@@ -83,11 +88,11 @@
       transition: width 0.3s;
     }
 
-    nav a:hover {
+    .desktop-nav a:hover {
       color: var(--dourado);
     }
 
-    nav a:hover::after {
+    .desktop-nav a:hover::after {
       width: 100%;
     }
 
@@ -125,7 +130,81 @@
       transform: translateY(-3px);
     }
 
-    #hero-section {
+    /* --- Mobile Menu --- */
+    #menu-toggle {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+    }
+
+    #menu-toggle span {
+        width: 30px;
+        height: 3px;
+        background: var(--texto);
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--branco);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.5s ease-in-out;
+        z-index: 1000;
+    }
+
+    #mobile-nav.open {
+        right: 0;
+    }
+
+    #mobile-nav a {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2rem;
+        color: var(--rosa-escuro);
+        text-decoration: none;
+        margin: 1.5rem 0;
+        transition: color 0.3s;
+    }
+
+    #mobile-nav a:hover {
+        color: var(--dourado);
+    }
+
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    #overlay.open {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Hero Section */
+    #hero {
       padding: 5rem 0;
       min-height: 80vh;
       display: flex;
@@ -149,9 +228,9 @@
     }
     
     .hero-content p {
-        font-size: 1.15rem;
-        margin: 1.5rem 0 2.5rem;
-        max-width: 500px;
+      font-size: 1.15rem;
+      margin: 1.5rem 0 2.5rem;
+      max-width: 500px;
     }
 
     .hero-content .image-placeholder {
@@ -162,17 +241,14 @@
       background: url('https://i.imgur.com/VajXf25.jpeg') no-repeat center center/cover;
     }
 
-    section {
-      padding: 6rem 0;
-    }
-
+    /* Collection Section */
     #collection {
       background-color: var(--cinza-claro);
     }
-    
+
     .section-header {
-        max-width: 600px;
-        margin-bottom: 3rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
     }
 
     .collection-grid {
@@ -190,8 +266,8 @@
     }
     
     .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
     }
 
     .product-card .image-placeholder {
@@ -200,13 +276,13 @@
     }
     
     .product-card .info {
-        padding: 1.5rem;
-        text-align: center;
+      padding: 1.5rem;
+      text-align: center;
     }
     
     .product-card .info h3 {
-        color: var(--texto);
-        margin-bottom: 0.5rem;
+      color: var(--texto);
+      margin-bottom: 0.5rem;
     }
 
     .product-card .price {
@@ -215,24 +291,30 @@
       font-size: 1.2rem;
     }
 
+    /* About Section */
+    #about {
+      padding: 6rem 0;
+    }
+
     .about-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5rem;
-        align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
     }
     
     .about-content .image-placeholder {
-        height: 500px;
-        border-radius: 15px;
-        background-color: var(--cinza-claro);
-        background: url('https://i.imgur.com/dJc8vT8.jpeg') no-repeat center center/cover;
+      height: 500px;
+      border-radius: 15px;
+      background-color: var(--cinza-claro);
+      background: url('https://i.imgur.com/dJc8vT8.jpeg') no-repeat center center/cover;
     }
     
     .about-content p {
-        margin-bottom: 1rem;
+      margin-bottom: 1rem;
     }
 
+    /* Footer */
     footer {
       background-color: var(--cinza-claro);
       color: var(--texto);
@@ -242,57 +324,59 @@
     }
     
     footer .logo-text {
-        color: var(--rosa-escuro);
-        font-size: 2rem;
+      color: var(--rosa-escuro);
+      font-size: 2rem;
     }
     
     footer p {
-        margin: 0.5rem 0 1.5rem;
-        color: #555;
+      margin: 0.5rem 0 1.5rem;
+      color: #555;
     }
 
     .social-icons a {
-        margin: 0 0.7rem;
-        color: var(--rosa-escuro);
-        font-size: 1.5rem;
-        text-decoration: none;
-        transition: color 0.3s;
+      margin: 0 0.7rem;
+      color: var(--rosa-escuro);
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s;
     }
     
     .social-icons a:hover {
-        color: var(--dourado);
-        transform: scale(1.1);
+      color: var(--dourado);
+      transform: scale(1.1);
     }
     
     .footer-bottom {
-        margin-top: 2rem;
-        font-size: 0.9rem;
-        color: #777;
-        border-top: 1px solid #ddd;
-        padding-top: 2rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #ddd;
+      padding-top: 2rem;
     }
 
+    /* Fade In Animation */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
+
+    /* Responsive */
     @media (max-width: 992px) {
-        h1 { font-size: 3rem; }
-        .hero-content { grid-template-columns: 1fr; text-align: center; }
-        .hero-content p { margin-left: auto; margin-right: auto; }
-        .hero-content .image-placeholder { height: 400px; margin-top: 3rem; order: -1; }
-        
-        .about-content { grid-template-columns: 1fr; text-align: center; }
-        .about-content .image-placeholder { order: -1; margin-bottom: 2rem; }
+      h1 { font-size: 3rem; }
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .hero-content .image-placeholder { height: 400px; margin-top: 3rem; order: -1; }
+      .about-content { grid-template-columns: 1fr; text-align: center; }
+      .about-content .image-placeholder { order: -1; margin-bottom: 2rem; }
     }
-    
+
     @media (max-width: 768px) {
-        nav { display: none; /* Simple solution for now, could be a burger menu */ }
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2.2rem; }
-        section { padding: 4rem 0; }
-        .hero-content { gap: 3rem; }
+      .desktop-nav { display: none; }
+      #menu-toggle { display: flex; }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2.2rem; }
+      section { padding: 4rem 0; }
+      .hero-content { gap: 3rem; }
     }
 
   </style>
@@ -301,33 +385,46 @@
 
   <header class="container">
     <a href="#" class="logo-text">Lunna Modas</a>
-    <nav>
+    <nav class="desktop-nav">
       <a href="#collection">Coleção</a>
       <a href="#about">Sobre</a>
       <a href="#contact">Contato</a>
     </nav>
+    <button id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
   </header>
+
+  <div id="overlay"></div>
+  <nav id="mobile-nav">
+    <a href="#collection">Coleção</a>
+    <a href="#about">Sobre</a>
+    <a href="#contact">Contato</a>
+  </nav>
 
   <main>
     <section id="hero">
       <div class="container">
-        <div id="hero">
-            <div class="text-content">
-                <h1>Elegância que <span class="highlight">floresce</span> em você.</h1>
-                <p>Descubra peças minimalistas e sofisticadas, criadas para a mulher moderna que valoriza conforto, qualidade e estilo atemporal.</p>
-                <a href="#collection" class="btn btn-primary">Ver Coleção</a>
-                <a href="#about" class="btn btn-secondary" style="margin-left: 1rem;">Nossa História</a>
-            </div>
-            <div class="image-placeholder">
-                <!-- Imagem de uma modelo com look clean e sofisticado -->
-            </div>
+        <div class="hero-content">
+          <div class="text-content">
+            <h1>Elegância que <span class="highlight">floresce</span> em você.</h1>
+            <p>Descubra peças minimalistas e sofisticadas, criadas para a mulher moderna que valoriza conforto, qualidade e estilo atemporal.</p>
+            <a href="#collection" class="btn btn-primary">Ver Coleção</a>
+            <a href="#about" class="btn btn-secondary" style="margin-left: 1rem;">Nossa História</a>
+          </div>
+          <div class="image-placeholder"></div>
         </div>
       </div>
     </section>
 
     <section id="collection">
       <div class="container">
-        <h2>Nossa Coleção</h2>
+        <div class="section-header">
+            <h2>Nossa Coleção</h2>
+            <p>Peças selecionadas que combinam design atemporal e tecidos de alta qualidade para um guarda-roupa versátil e elegante.</p>
+        </div>
         <div class="collection-grid">
           <div class="product-card">
             <div class="image-placeholder" style="background: url('https://i.imgur.com/9Zf2N7A.jpeg') no-repeat center center/cover;"></div>
@@ -355,18 +452,16 @@
     </section>
 
     <section id="about">
-        <div class="container">
-            <div id="about">
-                <div class="text-content">
-                    <h2>Feito com <span class="highlight" style="color: var(--dourado);">alma</span> e <span class="highlight" style="color: var(--dourado);">propósito</span></h2>
-                    <p>A Lunna Modas nasceu do desejo de criar mais do que apenas roupas. Criamos peças que contam histórias, que celebram a feminilidade e que acompanham você em todos os momentos. Cada tecido é escolhido a dedo, cada corte é pensado para valorizar e cada coleção é um convite para você se sentir única.</p>
-                    <p>Acreditamos na moda consciente, na produção local e no poder de um look para transformar o dia.</p>
-                </div>
-                <div class="image-placeholder">
-                    <!-- Imagem do ateliê, tecidos ou um detalhe de produção -->
-                </div>
-            </div>
+      <div class="container">
+        <div class="about-content">
+          <div class="text-content">
+            <h2>Feito com <span class="highlight" style="color: var(--dourado);">alma</span> e propósito</h2>
+            <p>A Lunna Modas nasceu do desejo de criar mais do que apenas roupas. Criamos peças que contam histórias, que celebram a feminilidade e que acompanham você em todos os momentos.</p>
+            <p>Cada tecido é escolhido a dedo, cada corte é pensado para valorizar e cada coleção é um convite para você se sentir única. Acreditamos na moda consciente, na produção local e no poder de um look para transformar o dia.</p>
+          </div>
+          <div class="image-placeholder"></div>
         </div>
+      </div>
     </section>
   </main>
 
@@ -382,9 +477,49 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
         </a>
       </div>
-      <p style="margin-top: 2rem; font-size: 0.9rem;">© 2025 Lunna Modas. Todos os direitos reservados.</p>
+      <div class="footer-bottom">
+        <p>© 2025 Lunna Modas. Todos os direitos reservados.</p>
+      </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const overlay = document.getElementById('overlay');
+        const navLinks = mobileNav.querySelectorAll('a');
+
+        const closeMenu = () => {
+            mobileNav.classList.remove('open');
+            overlay.classList.remove('open');
+            overlay.style.opacity = 0;
+            setTimeout(() => {
+                if (!mobileNav.classList.contains('open')) {
+                    overlay.style.display = 'none';
+                }
+            }, 500);
+        };
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.contains('open');
+            if (isOpen) {
+                closeMenu();
+            } else {
+                mobileNav.classList.add('open');
+                overlay.style.display = 'block';
+                setTimeout(() => overlay.classList.add('open'), 10); // Small delay to trigger transition
+                setTimeout(() => overlay.style.opacity = 1, 10);
+            }
+        });
+
+        overlay.addEventListener('click', closeMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    });
+  </script>
 
 </body>
 </html>
