@@ -8,12 +8,15 @@
         const closeMenu = () => {
             mobileNav.classList.remove('open');
             overlay.classList.remove('open');
+            menuToggle.classList.remove('open');
+            menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
         };
 
         menuToggle.addEventListener('click', () => {
             const isOpen = mobileNav.classList.contains('open');
             mobileNav.classList.toggle('open');
             overlay.classList.toggle('open');
+            menuToggle.classList.toggle('open');
             if (isOpen) {
                 menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
             } else {
