@@ -238,7 +238,7 @@
       height: 500px;
       border-radius: 15px;
       animation: fadeIn 1s ease-in-out 0.5s;
-      background: url('https://i.imgur.com/VajXf25.jpeg') no-repeat center center/cover;
+      background: url('../imagens/hero-background.png') no-repeat center center/cover;
     }
 
     /* Collection Section */
@@ -304,10 +304,16 @@
     }
     
     .about-content .image-placeholder {
-      height: 500px;
+      height: auto;
       border-radius: 15px;
-      background-color: var(--cinza-claro);
-      background: url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+      background-color: transparent;
+    }
+
+    .about-content .image-placeholder img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
     }
     
     .about-content p {
@@ -432,21 +438,21 @@
         </div>
         <div class="collection-grid">
           <div class="product-card">
-            <div class="image-placeholder" style="background: url('https://i.imgur.com/9Zf2N7A.jpeg') no-repeat center center/cover;"></div>
+            <div class="image-placeholder" style="background: url('../imagens/produto-vestido.png') no-repeat center center/cover;"></div>
             <div class="info">
               <h3>Vestido Seda Pura</h3>
               <p class="price">R$ 499,90</p>
             </div>
           </div>
           <div class="product-card">
-            <div class="image-placeholder" style="background: url('https://i.imgur.com/DqfW3rG.jpeg') no-repeat center center/cover;"></div>
+            <div class="image-placeholder" style="background: url('../imagens/produto-blazer.png') no-repeat center center/cover;"></div>
             <div class="info">
               <h3>Blazer Linho Fino</h3>
               <p class="price">R$ 629,90</p>
             </div>
           </div>
           <div class="product-card">
-            <div class="image-placeholder" style="background: url('https://i.imgur.com/rGk2b3Y.jpeg') no-repeat center center/cover;"></div>
+            <div class="image-placeholder" style="background: url('../imagens/produto-saia.png') no-repeat center center/cover;"></div>
             <div class="info">
               <h3>Saia Midi Plissada</h3>
               <p class="price">R$ 389,90</p>
@@ -464,7 +470,9 @@
             <p>A Lunna Modas nasceu do desejo de criar mais do que apenas roupas. Criamos peças que contam histórias, que celebram a feminilidade e que acompanham você em todos os momentos.</p>
             <p>Cada tecido é escolhido a dedo, cada corte é pensado para valorizar e cada coleção é um convite para você se sentir única. Acreditamos na moda consciente, na produção local e no poder de um look para transformar o dia.</p>
           </div>
-          <div class="image-placeholder"></div>
+          <div class="image-placeholder">
+            <img src="../imagens/info.png" alt="InformaÃ§Ãµes sobre a loja Lunna Modas">
+          </div>
         </div>
       </div>
     </section>
