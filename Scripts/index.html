@@ -320,6 +320,79 @@
       margin-bottom: 1rem;
     }
 
+    /* Contact Form Section */
+    #contact-form-section {
+        padding: 6rem 0;
+    }
+
+    #contact-form-section .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    #lunna-contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--dourado);
+        box-shadow: 0 0 0 3px rgba(201, 166, 70, 0.2);
+    }
+
+    .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+
+    #form-status {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 500;
+        display: none; /* Hidden by default */
+    }
+
+    #form-status.success {
+        background-color: #d4edda;
+        color: #155724;
+        display: block;
+    }
+
+    #form-status.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        display: block;
+    }
+
     /* Footer */
     footer {
       background-color: var(--cinza-claro);
@@ -399,7 +472,7 @@
     <nav class="desktop-nav">
       <a href="#collection">Coleção</a>
       <a href="#about">Sobre</a>
-      <a href="#contact">Contato</a>
+      <a href="#contact-form-section">Contato</a>
     </nav>
     <button id="menu-toggle">
         <span></span>
@@ -412,7 +485,7 @@
   <nav id="mobile-nav">
     <a href="#collection">Coleção</a>
     <a href="#about">Sobre</a>
-    <a href="#contact">Contato</a>
+    <a href="#contact-form-section">Contato</a>
   </nav>
 
   <main>
@@ -476,6 +549,31 @@
         </div>
       </div>
     </section>
+
+    <section id="contact-form-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em Contato</h2>
+                <p>Adoraríamos ouvir de você. Preencha o formulário abaixo para nos enviar uma mensagem.</p>
+            </div>
+            <form id="lunna-contact-form">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </form>
+            <div id="form-status"></div>
+        </div>
+    </section>
   </main>
 
   <footer id="contact">
@@ -530,6 +628,53 @@
 
         navLinks.forEach(link => {
             link.addEventListener('click', closeMenu);
+        });
+
+        // Contact Form Handler
+        const contactForm = document.getElementById('lunna-contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = contactForm.name.value;
+            const email = contactForm.email.value;
+            const message = contactForm.message.value;
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+
+            try {
+                const response = await fetch('http://localhost:3000/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, message }),
+                });
+
+                const result = await response.json();
+
+                formStatus.textContent = result.message;
+                if (response.ok) {
+                    formStatus.className = 'success';
+                    contactForm.reset();
+                } else {
+                    formStatus.className = 'error';
+                }
+
+            } catch (error) {
+                formStatus.className = 'error';
+                formStatus.textContent = 'Erro ao conectar com o servidor. Tente novamente mais tarde.';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Enviar Mensagem';
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                    formStatus.className = '';
+                }, 5000);
+            }
         });
     });
   </script>
