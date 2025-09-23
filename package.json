@@ -1,0 +1,28 @@
+{
+  "name": "laddingpagelunnamoda",
+  "version": "1.0.0",
+  "description": "Landing Page responsiva para uma loja de roupas fictícia, criada para apresentar coleções, destacar benefícios da marca e converter visitantes em leads ou compras com CTAs claros e prova social.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KatsumiCaio/LaddingpageLunnaModa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KatsumiCaio/LaddingpageLunnaModa/issues"
+  },
+  "homepage": "https://github.com/KatsumiCaio/LaddingpageLunnaModa#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
