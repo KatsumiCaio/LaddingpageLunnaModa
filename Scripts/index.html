@@ -12,7 +12,7 @@
     :root {
       --rosa-pastel: #F8C9D4;
       --rosa-escuro: #C75C7A;
-      --dourado: #C9A646;
+      --dourado: #A57C1B; /* Cor ajustada para acessibilidade */
       --branco: #FFFFFF;
       --cinza-claro: #F2F2F2;
       --texto: #2c2c2c;
@@ -237,11 +237,16 @@
     }
 
     .hero-content .image-placeholder {
-      background-color: var(--cinza-claro);
       height: 500px;
       border-radius: 15px;
       animation: slideInFromRight 1s ease-out;
-      background: url('../imagens/hero-background.png') no-repeat center center/cover;
+      overflow: hidden;
+    }
+
+    .hero-content .image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* Collection Section */
@@ -273,13 +278,19 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
-    .product-card .image-placeholder {
+    .product-card .product-image {
       height: 350px;
-      background-color: var(--rosa-pastel);
+      overflow: hidden;
+    }
+
+    .product-card .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       transition: transform 0.4s ease;
     }
 
-    .product-card:hover .image-placeholder {
+    .product-card:hover .product-image img {
         transform: scale(1.05);
     }
     
@@ -314,7 +325,6 @@
     .about-content .image-placeholder {
       height: auto;
       border-radius: 15px;
-      background-color: transparent;
     }
 
     .about-content .image-placeholder img {
@@ -372,7 +382,7 @@
     .form-group textarea:focus {
         outline: none;
         border-color: var(--dourado);
-        box-shadow: 0 0 0 3px rgba(201, 166, 70, 0.2);
+        box-shadow: 0 0 0 3px rgba(165, 124, 27, 0.2);
     }
 
     .form-group textarea {
@@ -499,10 +509,10 @@
       <a href="#about">Sobre</a>
       <a href="#contact-form-section">Contato</a>
     </nav>
-    <button id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+    <button id="menu-toggle" aria-label="Abrir menu de navegação">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
     </button>
   </header>
 
@@ -523,7 +533,9 @@
             <a href="#collection" class="btn btn-primary">Ver Coleção</a>
             <a href="#about" class="btn btn-secondary" style="margin-left: 1rem;">Nossa História</a>
           </div>
-          <div class="image-placeholder"></div>
+          <div class="image-placeholder">
+            <img src="../imagens/hero-background.png" alt="Modelo vestindo uma blusa branca elegante em um fundo com tons pasteis.">
+          </div>
         </div>
       </div>
     </section>
@@ -536,21 +548,27 @@
         </div>
         <div class="collection-grid">
           <div class="product-card">
-            <div class="image-placeholder" style="background: url('../imagens/produto-vestido.png') no-repeat center center/cover;"></div>
+            <div class="product-image">
+              <img src="../imagens/produto-vestido.png" alt="Vestido de seda pura na cor rosa pastel.">
+            </div>
             <div class="info">
               <h3>Vestido Seda Pura</h3>
               <p class="price">R$ 499,90</p>
             </div>
           </div>
           <div class="product-card">
-            <div class="image-placeholder" style="background: url('../imagens/produto-blazer.png') no-repeat center center/cover;"></div>
+            <div class="product-image">
+              <img src="../imagens/produto-blazer.png" alt="Blazer de linho fino na cor bege.">
+            </div>
             <div class="info">
               <h3>Blazer Linho Fino</h3>
               <p class="price">R$ 629,90</p>
             </div>
           </div>
           <div class="product-card">
-            <div class="image-placeholder" style="background: url('../imagens/produto-saia.png') no-repeat center center/cover;"></div>
+            <div class="product-image">
+              <img src="../imagens/produto-saia.png" alt="Saia midi plissada na cor branca.">
+            </div>
             <div class="info">
               <h3>Saia Midi Plissada</h3>
               <p class="price">R$ 389,90</p>
@@ -569,7 +587,7 @@
             <p>Cada tecido é escolhido a dedo, cada corte é pensado para valorizar e cada coleção é um convite para você se sentir única. Acreditamos na moda consciente, na produção local e no poder de um look para transformar o dia.</p>
           </div>
           <div class="image-placeholder">
-            <img src="../imagens/info.png" alt="InformaÃ§Ãµes sobre a loja Lunna Modas">
+            <img src="../imagens/info.png" alt="Detalhe de uma arara de roupas com peças da Lunna Modas em tons neutros e pasteis.">
           </div>
         </div>
       </div>
@@ -633,8 +651,14 @@
         };
 
         menuToggle.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.contains('open');
             mobileNav.classList.toggle('open');
             overlay.classList.toggle('open');
+            if (isOpen) {
+                menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
+            } else {
+                menuToggle.setAttribute('aria-label', 'Fechar menu de navegação');
+            }
         });
 
         overlay.addEventListener('click', closeMenu);
