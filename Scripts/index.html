@@ -504,12 +504,12 @@
 
   <header class="container">
     <a href="#" class="logo-text">Lunna Modas</a>
-    <nav class="desktop-nav">
+    <nav class="desktop-nav" aria-label="Navegação principal">
       <a href="#collection">Coleção</a>
       <a href="#about">Sobre</a>
       <a href="#contact-form-section">Contato</a>
     </nav>
-    <button id="menu-toggle" aria-label="Abrir menu de navegação">
+    <button id="menu-toggle" aria-label="Abrir menu de navegação" aria-haspopup="true" aria-controls="mobile-nav">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -517,18 +517,18 @@
   </header>
 
   <div id="overlay"></div>
-  <nav id="mobile-nav">
+  <nav id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menu de navegação móvel">
     <a href="#collection">Coleção</a>
     <a href="#about">Sobre</a>
     <a href="#contact-form-section">Contato</a>
   </nav>
 
   <main>
-    <section id="hero">
+    <section id="hero" aria-labelledby="hero-heading">
       <div class="container">
         <div class="hero-content">
           <div class="text-content">
-            <h1>Elegância que <span class="highlight">floresce</span> em você.</h1>
+            <h1 id="hero-heading">Elegância que <span class="highlight">floresce</span> em você.</h1>
             <p>Descubra peças minimalistas e sofisticadas, criadas para a mulher moderna que valoriza conforto, qualidade e estilo atemporal.</p>
             <a href="#collection" class="btn btn-primary">Ver Coleção</a>
             <a href="#about" class="btn btn-secondary" style="margin-left: 1rem;">Nossa História</a>
@@ -540,49 +540,49 @@
       </div>
     </section>
 
-    <section id="collection" class="reveal-on-scroll">
+    <section id="collection" class="reveal-on-scroll" aria-labelledby="collection-heading">
       <div class="container">
         <div class="section-header">
-            <h2>Nossa Coleção</h2>
+            <h2 id="collection-heading">Nossa Coleção</h2>
             <p>Peças selecionadas que combinam design atemporal e tecidos de alta qualidade para um guarda-roupa versátil e elegante.</p>
         </div>
         <div class="collection-grid">
-          <div class="product-card">
+          <article class="product-card" aria-labelledby="product-heading-1">
             <div class="product-image">
               <img src="../imagens/produto-vestido.png" alt="Vestido de seda pura na cor rosa pastel.">
             </div>
             <div class="info">
-              <h3>Vestido Seda Pura</h3>
+              <h3 id="product-heading-1">Vestido Seda Pura</h3>
               <p class="price">R$ 499,90</p>
             </div>
-          </div>
-          <div class="product-card">
+          </article>
+          <article class="product-card" aria-labelledby="product-heading-2">
             <div class="product-image">
               <img src="../imagens/produto-blazer.png" alt="Blazer de linho fino na cor bege.">
             </div>
             <div class="info">
-              <h3>Blazer Linho Fino</h3>
+              <h3 id="product-heading-2">Blazer Linho Fino</h3>
               <p class="price">R$ 629,90</p>
             </div>
-          </div>
-          <div class="product-card">
+          </article>
+          <article class="product-card" aria-labelledby="product-heading-3">
             <div class="product-image">
               <img src="../imagens/produto-saia.png" alt="Saia midi plissada na cor branca.">
             </div>
             <div class="info">
-              <h3>Saia Midi Plissada</h3>
+              <h3 id="product-heading-3">Saia Midi Plissada</h3>
               <p class="price">R$ 389,90</p>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="about" class="reveal-on-scroll">
+    <section id="about" class="reveal-on-scroll" aria-labelledby="about-heading">
       <div class="container">
         <div class="about-content">
           <div class="text-content">
-            <h2>Feito com <span class="highlight" style="color: var(--dourado);">alma</span> e propósito</h2>
+            <h2 id="about-heading">Feito com <span class="highlight" style="color: var(--dourado);">alma</span> e propósito</h2>
             <p>A Lunna Modas nasceu do desejo de criar mais do que apenas roupas. Criamos peças que contam histórias, que celebram a feminilidade e que acompanham você em todos os momentos.</p>
             <p>Cada tecido é escolhido a dedo, cada corte é pensado para valorizar e cada coleção é um convite para você se sentir única. Acreditamos na moda consciente, na produção local e no poder de um look para transformar o dia.</p>
           </div>
@@ -593,10 +593,10 @@
       </div>
     </section>
 
-    <section id="contact-form-section" class="reveal-on-scroll">
+    <section id="contact-form-section" class="reveal-on-scroll" aria-labelledby="contact-heading">
         <div class="container">
             <div class="section-header">
-                <h2>Entre em Contato</h2>
+                <h2 id="contact-heading">Entre em Contato</h2>
                 <p>Adoraríamos ouvir de você. Preencha o formulário abaixo para nos enviar uma mensagem.</p>
             </div>
             <form id="lunna-contact-form">
@@ -614,7 +614,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
             </form>
-            <div id="form-status"></div>
+            <div id="form-status" aria-live="polite"></div>
         </div>
     </section>
   </main>
