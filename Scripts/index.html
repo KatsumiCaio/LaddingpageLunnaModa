@@ -74,7 +74,7 @@
       color: var(--texto);
       font-weight: 500;
       position: relative;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
     .desktop-nav a::after {
@@ -85,7 +85,7 @@
       bottom: -5px;
       left: 0;
       background-color: var(--dourado);
-      transition: width 0.3s;
+      transition: width 0.3s ease;
     }
 
     .desktop-nav a:hover {
@@ -102,7 +102,7 @@
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
       border: 2px solid transparent;
       font-size: 0.95rem;
     }
@@ -115,7 +115,7 @@
     .btn-primary:hover {
       background-color: #b34a65;
       transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     }
 
     .btn-secondary {
@@ -128,6 +128,7 @@
       background-color: var(--rosa-escuro);
       color: var(--branco);
       transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(199, 92, 122, 0.3);
     }
 
     /* --- Mobile Menu --- */
@@ -179,7 +180,7 @@
         color: var(--rosa-escuro);
         text-decoration: none;
         margin: 1.5rem 0;
-        transition: color 0.3s;
+        transition: color 0.3s ease;
     }
 
     #mobile-nav a:hover {
@@ -195,6 +196,7 @@
         height: 100%;
         background: rgba(0,0,0,0.5);
         z-index: 999;
+        opacity: 0;
         transition: opacity 0.5s ease-in-out;
     }
 
@@ -209,6 +211,7 @@
       min-height: 80vh;
       display: flex;
       align-items: center;
+      overflow: hidden;
     }
     
     .hero-content {
@@ -219,7 +222,7 @@
     }
 
     .hero-content .text-content {
-      animation: fadeIn 1s ease-in-out;
+      animation: slideInFromLeft 1s ease-out;
     }
 
     .hero-content h1 .highlight {
@@ -237,7 +240,7 @@
       background-color: var(--cinza-claro);
       height: 500px;
       border-radius: 15px;
-      animation: fadeIn 1s ease-in-out 0.5s;
+      animation: slideInFromRight 1s ease-out;
       background: url('../imagens/hero-background.png') no-repeat center center/cover;
     }
 
@@ -262,17 +265,22 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 8px 15px rgba(0,0,0,0.04);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     
     .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
     .product-card .image-placeholder {
       height: 350px;
       background-color: var(--rosa-pastel);
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .image-placeholder {
+        transform: scale(1.05);
     }
     
     .product-card .info {
@@ -417,12 +425,13 @@
       color: var(--rosa-escuro);
       font-size: 1.5rem;
       text-decoration: none;
-      transition: color 0.3s;
+      display: inline-block;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
     
     .social-icons a:hover {
       color: var(--dourado);
-      transform: scale(1.1);
+      transform: scale(1.2) translateY(-2px);
     }
     
     .footer-bottom {
@@ -433,10 +442,26 @@
       padding-top: 2rem;
     }
 
-    /* Fade In Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* --- Animation & Interaction Classes --- */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     /* Responsive */
@@ -503,7 +528,7 @@
       </div>
     </section>
 
-    <section id="collection">
+    <section id="collection" class="reveal-on-scroll">
       <div class="container">
         <div class="section-header">
             <h2>Nossa Coleção</h2>
@@ -535,7 +560,7 @@
       </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="reveal-on-scroll">
       <div class="container">
         <div class="about-content">
           <div class="text-content">
@@ -550,7 +575,7 @@
       </div>
     </section>
 
-    <section id="contact-form-section">
+    <section id="contact-form-section" class="reveal-on-scroll">
         <div class="container">
             <div class="section-header">
                 <h2>Entre em Contato</h2>
@@ -576,7 +601,7 @@
     </section>
   </main>
 
-  <footer id="contact">
+  <footer id="contact" class="reveal-on-scroll">
     <div class="container">
       <a href="#" class="logo-text">Lunna Modas</a>
       <p>contato@lunnamodas.com.br | (11) 98765-4321</p>
@@ -596,6 +621,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // --- Mobile Menu ---
         const menuToggle = document.getElementById('menu-toggle');
         const mobileNav = document.getElementById('mobile-nav');
         const overlay = document.getElementById('overlay');
@@ -604,33 +630,34 @@
         const closeMenu = () => {
             mobileNav.classList.remove('open');
             overlay.classList.remove('open');
-            overlay.style.opacity = 0;
-            setTimeout(() => {
-                if (!mobileNav.classList.contains('open')) {
-                    overlay.style.display = 'none';
-                }
-            }, 500);
         };
 
         menuToggle.addEventListener('click', () => {
-            const isOpen = mobileNav.classList.contains('open');
-            if (isOpen) {
-                closeMenu();
-            } else {
-                mobileNav.classList.add('open');
-                overlay.style.display = 'block';
-                setTimeout(() => overlay.classList.add('open'), 10); // Small delay to trigger transition
-                setTimeout(() => overlay.style.opacity = 1, 10);
-            }
+            mobileNav.classList.toggle('open');
+            overlay.classList.toggle('open');
         });
 
         overlay.addEventListener('click', closeMenu);
-
         navLinks.forEach(link => {
             link.addEventListener('click', closeMenu);
         });
 
-        // Contact Form Handler
+        // --- Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // --- Contact Form Handler ---
         const contactForm = document.getElementById('lunna-contact-form');
         const formStatus = document.getElementById('form-status');
 
@@ -657,6 +684,8 @@
                 const result = await response.json();
 
                 formStatus.textContent = result.message;
+                formStatus.style.display = 'block';
+
                 if (response.ok) {
                     formStatus.className = 'success';
                     contactForm.reset();
@@ -666,6 +695,7 @@
 
             } catch (error) {
                 formStatus.className = 'error';
+                formStatus.style.display = 'block';
                 formStatus.textContent = 'Erro ao conectar com o servidor. Tente novamente mais tarde.';
             } finally {
                 submitButton.disabled = false;
@@ -673,7 +703,7 @@
                 setTimeout(() => {
                     formStatus.style.display = 'none';
                     formStatus.className = '';
-                }, 5000);
+                }, 6000);
             }
         });
     });
