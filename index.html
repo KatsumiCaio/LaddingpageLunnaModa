@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lunna Modas - Sofisticação e Minimalismo</title>
+  <meta name="description" content="Lunna Modas - Peças minimalistas e sofisticadas para mulheres modernas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="container">
+    <a href="#" class="logo-text">Lunna Modas</a>
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <a href="#collection">Coleção</a>
+      <a href="#about">Sobre</a>
+      <a href="#contact-form-section">Contato</a>
+    </nav>
+    <button id="menu-toggle" aria-label="Abrir menu de navegação" aria-haspopup="true" aria-controls="mobile-nav">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <div id="overlay"></div>
+  <nav id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menu de navegação móvel">
+    <a href="#collection">Coleção</a>
+    <a href="#about">Sobre</a>
+    <a href="#contact-form-section">Contato</a>
+  </nav>
+
+  <main>
+    <section id="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <div class="text-content">
+            <h1 id="hero-heading">Elegância que <span class="highlight">floresce</span> em você.</h1>
+            <p>Descubra peças minimalistas e sofisticadas, criadas para a mulher moderna que valoriza conforto, qualidade e estilo atemporal.</p>
+            <a href="#collection" class="btn btn-primary">Ver Coleção</a>
+            <a href="#about" class="btn btn-secondary" style="margin-left: 1rem;">Nossa História</a>
+          </div>
+          <div class="image-placeholder">
+            <img src="assets/images/hero-background.png" alt="Modelo vestindo uma blusa branca elegante em um fundo com tons pasteis.">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="collection" class="reveal-on-scroll" aria-labelledby="collection-heading">
+      <div class="container">
+        <div class="section-header">
+            <h2 id="collection-heading">Nossa Coleção</h2>
+            <p>Peças selecionadas que combinam design atemporal e tecidos de alta qualidade para um guarda-roupa versátil e elegante.</p>
+        </div>
+        <div class="collection-grid">
+          <article class="product-card" aria-labelledby="product-heading-1">
+            <div class="product-image">
+              <img src="assets/images/produto-vestido.png" alt="Vestido de seda pura na cor rosa pastel.">
+            </div>
+            <div class="info">
+              <h3 id="product-heading-1">Vestido Seda Pura</h3>
+              <p class="price">R$ 499,90</p>
+            </div>
+          </article>
+          <article class="product-card" aria-labelledby="product-heading-2">
+            <div class="product-image">
+              <img src="assets/images/produto-blazer.png" alt="Blazer de linho fino na cor bege.">
+            </div>
+            <div class="info">
+              <h3 id="product-heading-2">Blazer Linho Fino</h3>
+              <p class="price">R$ 629,90</p>
+            </div>
+          </article>
+          <article class="product-card" aria-labelledby="product-heading-3">
+            <div class="product-image">
+              <img src="assets/images/produto-saia.png" alt="Saia midi plissada na cor branca.">
+            </div>
+            <div class="info">
+              <h3 id="product-heading-3">Saia Midi Plissada</h3>
+              <p class="price">R$ 389,90</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="reveal-on-scroll" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-content">
+          <div class="text-content">
+            <h2 id="about-heading">Feito com <span class="highlight" style="color: var(--dourado);">alma</span> e propósito</h2>
+            <p>A Lunna Modas nasceu do desejo de criar mais do que apenas roupas. Criamos peças que contam histórias, que celebram a feminilidade e que acompanham você em todos os momentos.</p>
+            <p>Cada tecido é escolhido a dedo, cada corte é pensado para valorizar e cada coleção é um convite para você se sentir única. Acreditamos na moda consciente, na produção local e no poder de um look para transformar o dia.</p>
+          </div>
+          <div class="image-placeholder">
+            <img src="assets/images/info.png" alt="Detalhe de uma arara de roupas com peças da Lunna Modas em tons neutros e pasteis.">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact-form-section" class="reveal-on-scroll" aria-labelledby="contact-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="contact-heading">Entre em Contato</h2>
+                <p>Adoraríamos ouvir de você. Preencha o formulário abaixo para nos enviar uma mensagem.</p>
+            </div>
+            <form id="lunna-contact-form">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </form>
+            <div id="form-status" aria-live="polite"></div>
+        </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="reveal-on-scroll">
+    <div class="container">
+      <a href="#" class="logo-text">Lunna Modas</a>
+      <p>contato@lunnamodas.com.br | (11) 98765-4321</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Lunna Modas. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+
+</body>
+</html>
