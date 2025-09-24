@@ -33,6 +33,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Google Analytics -->
@@ -77,27 +80,27 @@
     <section id="hero" aria-labelledby="hero-heading">
       <div class="container">
         <div class="hero-content">
-          <div class="text-content">
+          <div class="text-content" data-aos="fade-up">
             <h1 id="hero-heading">Elegância que <span class="highlight">floresce</span> em você.</h1>
             <p>Descubra peças minimalistas e sofisticadas, criadas para a mulher moderna que valoriza conforto, qualidade e estilo atemporal.</p>
             <a href="#collection" class="btn btn-primary">Ver Coleção</a>
             <a href="#about" class="btn btn-secondary" style="margin-left: 1rem;">Nossa História</a>
           </div>
-          <div class="image-placeholder">
+          <div class="image-placeholder" data-aos="fade-left" data-aos-delay="200">
             <img src="assets/images/hero-background.png" alt="Modelo vestindo uma blusa branca elegante em um fundo com tons pasteis.">
           </div>
         </div>
       </div>
     </section>
 
-    <section id="collection" class="reveal-on-scroll" aria-labelledby="collection-heading">
+    <section id="collection" aria-labelledby="collection-heading">
       <div class="container">
         <div class="section-header">
             <h2 id="collection-heading">Nossa Coleção</h2>
             <p>Peças selecionadas que combinam design atemporal e tecidos de alta qualidade para um guarda-roupa versátil e elegante.</p>
         </div>
         <div class="collection-grid">
-          <article class="product-card" aria-labelledby="product-heading-1">
+          <article class="product-card" aria-labelledby="product-heading-1" data-aos="fade-up" data-aos-delay="100">
             <div class="product-image">
               <img src="assets/images/produto-vestido.png" alt="Vestido de seda pura na cor rosa pastel.">
             </div>
@@ -106,7 +109,7 @@
               <p class="price">R$ 499,90</p>
             </div>
           </article>
-          <article class="product-card" aria-labelledby="product-heading-2">
+          <article class="product-card" aria-labelledby="product-heading-2" data-aos="fade-up" data-aos-delay="200">
             <div class="product-image">
               <img src="assets/images/produto-blazer.png" alt="Blazer de linho fino na cor bege.">
             </div>
@@ -115,7 +118,7 @@
               <p class="price">R$ 629,90</p>
             </div>
           </article>
-          <article class="product-card" aria-labelledby="product-heading-3">
+          <article class="product-card" aria-labelledby="product-heading-3" data-aos="fade-up" data-aos-delay="300">
             <div class="product-image">
               <img src="assets/images/produto-saia.png" alt="Saia midi plissada na cor branca.">
             </div>
@@ -128,10 +131,10 @@
       </div>
     </section>
 
-    <section id="about" class="reveal-on-scroll" aria-labelledby="about-heading">
+    <section id="about" aria-labelledby="about-heading">
       <div class="container">
         <div class="about-content">
-          <div class="text-content">
+          <div class="text-content" data-aos="fade-up">
             <h2 id="about-heading">Feito com <span class="highlight" style="color: var(--dourado);">alma</span> e propósito</h2>
             <p>A Lunna Modas nasceu do desejo de criar mais do que apenas roupas. Criamos peças que contam histórias, que celebram a feminilidade e que acompanham você em todos os momentos.</p>
             <p>Cada tecido é escolhido a dedo, cada corte é pensado para valorizar e cada coleção é um convite para você se sentir única. Acreditamos na moda consciente, na produção local e no poder de um look para transformar o dia.</p>
@@ -143,7 +146,7 @@
       </div>
     </section>
 
-    <section id="contact-form-section" class="reveal-on-scroll" aria-labelledby="contact-heading">
+    <section id="contact-form-section" aria-labelledby="contact-heading">
         <div class="container">
             <div class="section-header">
                 <h2 id="contact-heading">Entre em Contato</h2>
@@ -175,7 +178,7 @@
     </svg>
   </a>
 
-  <footer id="contact" class="reveal-on-scroll">
+  <footer id="contact">
     <div class="container">
       <a href="#" class="logo-text">Lunna Modas</a>
       <p>contato@lunnamodas.com.br | (11) 98765-4321</p>
@@ -194,6 +197,13 @@
   </footer>
 
   <script src="assets/js/script.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  </script>
 
 </body>
 </html>
