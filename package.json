@@ -26,6 +26,10 @@
     "nodemailer": "^7.0.6"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "css-minify": "^2.1.0",
+    "imagemin-cli": "^8.0.0",
+    "imagemin-webp": "^8.0.0",
+    "nodemon": "^3.1.10",
+    "terser": "^5.44.0"
   }
 }
