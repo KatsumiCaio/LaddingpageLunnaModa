@@ -20,6 +20,8 @@
   "homepage": "https://github.com/KatsumiCaio/LaddingpageLunnaModa#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "eslint": "^9.36.0",
     "express": "^5.1.0",
     "nodemailer": "^7.0.6"
   },

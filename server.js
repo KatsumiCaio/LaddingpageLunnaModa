@@ -1,3 +1,5 @@
+
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -18,43 +20,38 @@ app.post('/send', async (req, res) => {
   }
 
   try {
-    // Criar uma conta de teste Ethereal (não precisa de credenciais reais)
-    let testAccount = await nodemailer.createTestAccount();
-
     // Criar um transportador reutilizável usando os dados da conta de teste
     let transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: testAccount.user, // usuário gerado pelo Ethereal
-        pass: testAccount.pass, // senha gerada pelo Ethereal
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Configurar o conteúdo do e-mail
     let mailOptions = {
       from: `"${name}" <${email}>`,
-      to: 'contato@lunnamodas.com.br', // O destinatário que você quer que receba
+      to: process.env.RECIPIENT_EMAIL, // O destinatário que você quer que receba
       subject: 'Nova mensagem do formulário de contato ✔',
       text: message,
       html: `<p>Você recebeu uma nova mensagem de <strong>${name}</strong> (${email}):</p><p>${message}</p>`,
     };
 
     // Enviar o e-mail
-    let info = await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
     console.log('--- Novo Contato Recebido e E-mail Enviado --');
     console.log(`Nome: ${name}`);
     console.log(`Email: ${email}`);
     console.log(`Mensagem: ${message}`);
-    console.log('URL de preview do E-mail: %s', nodemailer.getTestMessageUrl(info));
     console.log('---------------------------------------------');
 
-    // Enviar resposta de sucesso com o link de preview
+    // Enviar resposta de sucesso
     res.status(200).json({
       message: 'Mensagem enviada com sucesso!',
-      previewUrl: nodemailer.getTestMessageUrl(info) 
     });
 
   } catch (error) {
