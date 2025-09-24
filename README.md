@@ -4,15 +4,14 @@ Esta é uma landing page responsiva para a Lunna Modas, uma loja de roupas fict�
 
 ## ✨ Demo Ao Vivo
 
-**[Clique aqui para ver a demonstração ao vivo](https://seu-link-aqui.com)**
+**[Clique aqui para ver a demonstração ao vivo](https://katsumicaio.github.io/LaddingpageLunnaModa/)**
 
-*(Substitua `https://seu-link-aqui.com` pelo link do seu deploy no GitHub Pages, Vercel, etc.)*
+
 
 ## 📸 Preview
 
-![Preview da Landing Page](assets/images/hero-background.png)
+![Preview da Landing Page](assets/images/Demonstração.png)
 
-*(Sugestão: substitua esta imagem por uma captura de tela completa da página para uma melhor visualização.)*
 
 ## 🚀 Tecnologias Utilizadas
 
