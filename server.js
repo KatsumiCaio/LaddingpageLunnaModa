@@ -1,8 +1,8 @@
-
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = 3000;
 
@@ -10,9 +10,27 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Rota para lidar com o envio do formulário
-app.post('/send', async (req, res) => {
-  const { name, email, message } = req.body;
+// Rate Limiting para prevenir spam
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutos
+    max: 10, // Limita cada IP a 10 requisições por janela
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: 'Muitas solicitações deste IP, tente novamente após 15 minutos.',
+});
+
+// Função simples para sanitizar o input e remover tags HTML
+const sanitizeInput = (input) => {
+    if (typeof input !== 'string') return '';
+    return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+};
+
+// Rota para lidar com o envio do formulário, com rate limiting
+app.post('/send', limiter, async (req, res) => {
+  // Sanitiza os inputs
+  const name = sanitizeInput(req.body.name);
+  const email = sanitizeInput(req.body.email);
+  const message = sanitizeInput(req.body.message);
 
   // Validação simples no backend
   if (!name || !email || !message) {
@@ -33,7 +51,8 @@ app.post('/send', async (req, res) => {
 
     // Configurar o conteúdo do e-mail
     let mailOptions = {
-      from: `"${name}" <${email}>`,
+      from: `"${name}" <${process.env.EMAIL_USER}>`,
+      replyTo: email, // Adiciona o email do remetente no campo Reply-To
       to: process.env.RECIPIENT_EMAIL, // O destinatário que você quer que receba
       subject: 'Nova mensagem do formulário de contato ✔',
       text: message,
