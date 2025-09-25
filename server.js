@@ -25,21 +25,25 @@ const sanitizeInput = (input) => {
     return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 };
 
+const { body, validationResult } = require('express-validator');
+
 // Rota para lidar com o envio do formulário, com rate limiting
-app.post('/send', limiter, async (req, res) => {
-  // Sanitiza os inputs
-  const name = sanitizeInput(req.body.name);
-  const email = sanitizeInput(req.body.email);
-  const message = sanitizeInput(req.body.message);
+app.post('/send', limiter, [
+    // Validação e sanitização dos campos
+    body('name').trim().notEmpty().withMessage('O nome é obrigatório.').escape(),
+    body('email').isEmail().withMessage('Forneça um endereço de e-mail válido.').normalizeEmail(),
+    body('message').trim().notEmpty().withMessage('A mensagem é obrigatória.').isLength({ min: 5 }).withMessage('A mensagem precisa ter pelo menos 5 caracteres.').escape(),
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
-  // Validação simples no backend
-  if (!name || !email || !message) {
-    return res.status(400).json({ message: 'Erro: Todos os campos são obrigatórios.' });
-  }
+    const { name, email, message } = req.body;
 
-  try {
-    // Criar um transportador reutilizável usando os dados da conta de teste
-    let transporter = nodemailer.createTransport({
+    try {
+        // Criar um transportador reutilizável usando os dados da conta de teste
+        let transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
       secure: false, // true for 465, false for other ports

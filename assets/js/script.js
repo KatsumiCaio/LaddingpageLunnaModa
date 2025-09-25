@@ -62,8 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const contactForm = document.getElementById('lunna-contact-form');
         const formStatus = document.getElementById('form-status');
 
+        const clearErrors = () => {
+            const errorMessages = contactForm.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => msg.textContent = '');
+            const formGroups = contactForm.querySelectorAll('.form-group');
+            formGroups.forEach(group => group.classList.remove('error'));
+        };
+
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            clearErrors();
 
             const name = contactForm.name.value;
             const email = contactForm.email.value;
@@ -84,14 +92,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const result = await response.json();
 
-                formStatus.textContent = result.message;
-                formStatus.style.display = 'block';
-
                 if (response.ok) {
+                    formStatus.textContent = result.message;
                     formStatus.className = 'success';
+                    formStatus.style.display = 'block';
                     contactForm.reset();
                 } else {
+                    if (result.errors) {
+                        result.errors.forEach(error => {
+                            const inputField = contactForm.querySelector(`#${error.param}`);
+                            const errorContainer = inputField.nextElementSibling;
+                            if (errorContainer && errorContainer.classList.contains('error-message')) {
+                                errorContainer.textContent = error.msg;
+                                inputField.parentElement.classList.add('error');
+                            }
+                        });
+                        formStatus.textContent = 'Por favor, corrija os erros no formulário.';
+                    } else {
+                        formStatus.textContent = result.message || 'Ocorreu um erro.';
+                    }
                     formStatus.className = 'error';
+                    formStatus.style.display = 'block';
                 }
 
             } catch (error) {
