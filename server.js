@@ -6,7 +6,7 @@ const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
 const winston = require('winston');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Logger configuration
 const logger = winston.createLogger({

@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "lint": "eslint . --ext .js --max-warnings=0"
   },
   "repository": {
     "type": "git",
